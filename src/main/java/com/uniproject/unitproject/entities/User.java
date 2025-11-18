@@ -31,24 +31,12 @@ public class User {
     @JoinTable(name = "user_favorite_trips", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "trip_id"))
     private List<Trip> favoriteTrips;
 
-    @ElementCollection
-    @CollectionTable(name = "user_favorite_tags", joinColumns = @JoinColumn(name = "user_id"))
-    @Column(name = "tag")
-    private List<String> favoriteTags;
-
     @ManyToMany
     @JoinTable(name = "user_friends", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
     private List<User> friends;
 
     @Embedded
     private Vehicle vehicle;
-
-    private Double budget = 0.0;
-
-    @ElementCollection
-    @CollectionTable(name = "user_expenses", joinColumns = @JoinColumn(name = "user_id"))
-    private List<Expense> expenses;
-
     private Instant createdAt;
     private Instant updatedAt;
 

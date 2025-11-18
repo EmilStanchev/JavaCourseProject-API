@@ -1,9 +1,6 @@
 package com.uniproject.unitproject.entities;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import java.time.Instant;
 import java.util.List;
@@ -16,14 +13,9 @@ public class Landmark {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
     private String title;
-    @NotNull
-    @Column(columnDefinition = "TEXT")
-    private String desc;
-    @NotNull
+    private String description;
     private Double longitude;
-    @NotNull
     private Double latitude;
 
     @ElementCollection
@@ -31,13 +23,10 @@ public class Landmark {
     @Column(name = "image")
     private List<String> images;
 
-    @NotNull
-    @Min(1)
-    @Max(5)
     private Integer rating;
 
     @ManyToOne
-    @JoinColumn(name = "near_campsite_id", nullable = false)
+    @JoinColumn(name = "near_campsite_id")
     private Campsite nearCampsite;
 
     private Instant createdAt;

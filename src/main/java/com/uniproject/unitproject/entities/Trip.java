@@ -28,12 +28,6 @@ public class Trip {
     private String tag;
     private Integer likes = 0;
 
-    // simple list of review ids or just texts; better to map relation if needed.
-    @ElementCollection
-    @CollectionTable(name = "trip_reviews", joinColumns = @JoinColumn(name = "trip_id"))
-    @Column(name = "review_text")
-    private List<String> reviews;
-
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -43,10 +37,6 @@ public class Trip {
     @ManyToMany
     @JoinTable(name = "trip_landmarks", joinColumns = @JoinColumn(name = "trip_id"), inverseJoinColumns = @JoinColumn(name = "landmark_id"))
     private List<Landmark> landmarks;
-
-    @ElementCollection
-    @CollectionTable(name = "trip_gear", joinColumns = @JoinColumn(name = "trip_id"))
-    private List<GearItem> gear;
 
     private Instant createdAt;
     private Instant updatedAt;
@@ -60,6 +50,4 @@ public class Trip {
     protected void onUpdate() {
         updatedAt = Instant.now();
     }
-
-    // getters/setters
 }
