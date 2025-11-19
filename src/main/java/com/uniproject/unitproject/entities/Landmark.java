@@ -5,6 +5,8 @@ import lombok.Data;
 import java.time.Instant;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "landmarks")
 @Data
@@ -27,6 +29,8 @@ public class Landmark {
 
     @ManyToOne
     @JoinColumn(name = "near_campsite_id")
+    @JsonIgnore
+
     private Campsite nearCampsite;
 
     private Instant createdAt;

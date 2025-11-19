@@ -6,6 +6,8 @@ import lombok.Data;
 import java.time.Instant;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "trips")
 @Data
@@ -28,7 +30,10 @@ public class Trip {
     private String tag;
     private Integer likes = 0;
 
+
     @ManyToOne
+    @JsonIgnoreProperties({"favoriteTrips", "friends"})
+
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 

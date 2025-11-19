@@ -7,6 +7,8 @@ import lombok.Data;
 import java.time.Instant;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "users")
 @Data
@@ -28,10 +30,13 @@ public class User {
     private String country = "";
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(name = "user_favorite_trips", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "trip_id"))
     private List<Trip> favoriteTrips;
 
     @ManyToMany
+    @JsonIgnore
+
     @JoinTable(name = "user_friends", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "friend_id"))
     private List<User> friends;
 
